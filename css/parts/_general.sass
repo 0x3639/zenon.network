@@ -864,3 +864,42 @@ header
     max-height: 55rem
   @media screen and (min-width: $xlarge-screen)
     max-height: 65rem
+
+#dna-loading
+  width: 100%
+  max-height: 25rem
+  display: flex
+  align-items: center
+  justify-content: center
+  background: radial-gradient(circle at center, rgba(59, 218, 87, 0.1), transparent 70%)
+  border-radius: 8px
+  position: relative
+  @media screen and (min-width: $small-screen)
+    max-height: 35rem
+  @media screen and (min-width: $medium-screen)
+    max-height: 45rem
+  @media screen and (min-width: $large-screen)
+    max-height: 55rem
+  @media screen and (min-width: $xlarge-screen)
+    max-height: 65rem
+
+.dna-spinner
+  width: 60px
+  height: 60px
+  border: 3px solid rgba(59, 218, 87, 0.1)
+  border-top: 3px solid #3BDA57
+  border-radius: 50%
+  animation: spin 1s linear infinite
+  
+.dna-loading-text
+  position: absolute
+  bottom: 20%
+  color: #C7C7C7
+  font-size: 1.4rem
+  opacity: 0.8
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)

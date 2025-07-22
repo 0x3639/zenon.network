@@ -415,8 +415,10 @@
                   Based on a dual-coin mechanism, ZNN & QSR work in synergy to power the ultimate protocol for creating
                   digital value </p>
             </div>
-            <lottie-player id="dna" src="./img/anim/dna.json" clearCanvas="true" autoplay loop
-              mode="normal" speed="0.6"></lottie-player>
+            <div id="dna-loading">
+              <div class="dna-spinner"></div>
+              <div class="dna-loading-text">Loading DNA animation...</div>
+            </div>
 
           </div>
         </div>
@@ -998,6 +1000,170 @@
       nav: true,
       spacing: -0.7,
       touch: true
+    });
+
+    // Smart DNA Sprite Lazy Loading
+    document.addEventListener('DOMContentLoaded', function() {
+      let dnaAnimationLoaded = false;
+      let dnaLoadingContainer = document.getElementById('dna-loading');
+      
+      // Create intersection observer that triggers before the section is visible
+      const dnaObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !dnaAnimationLoaded) {
+            loadDNAAnimation();
+            dnaAnimationLoaded = true;
+            dnaObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        rootMargin: '200px 0px', // Start loading 200px before section is visible
+        threshold: 0
+      });
+
+      // Observe the network section
+      const networkSection = document.querySelector('.network');
+      if (networkSection) {
+        dnaObserver.observe(networkSection);
+      }
+
+      function loadDNAAnimation() {
+        // Update loading text
+        const loadingText = document.querySelector('.dna-loading-text');
+        if (loadingText) {
+          loadingText.textContent = 'Loading DNA animation...';
+        }
+
+        console.log('loadDNAAnimation called');
+        console.log('dnaLoadingContainer:', dnaLoadingContainer);
+
+        // Add loading timeout fallback (10 seconds)
+        const loadingTimeout = setTimeout(() => {
+          console.log('DNA loading timeout reached');
+          showFallbackMessage();
+        }, 10000);
+
+        // Try to load using innerHTML method instead of createElement
+        const animationHTML = `<lottie-player id="dna" src="./img/anim/dna.json" clearCanvas="true" autoplay loop mode="normal" speed="0.6" style="opacity:0; transition: opacity 0.5s ease-in-out;"></lottie-player>`;
+        
+        // Create a temporary container
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = animationHTML;
+        const lottiePlayer = tempDiv.firstElementChild;
+
+        console.log('Created lottie-player:', lottiePlayer);
+
+        // Function to handle successful loading
+        let animationHandled = false;
+        const handleAnimationReady = () => {
+          if (animationHandled) return; // Prevent multiple calls
+          animationHandled = true;
+          
+          clearTimeout(loadingTimeout);
+          console.log('DNA animation loaded successfully');
+          
+          if (dnaLoadingContainer && dnaLoadingContainer.parentNode) {
+            console.log('Starting replacement process');
+            
+            // Fade out loading spinner
+            dnaLoadingContainer.style.opacity = '0';
+            dnaLoadingContainer.style.transition = 'opacity 0.3s ease-out';
+            
+            setTimeout(() => {
+              try {
+                // Replace loading container with animation
+                console.log('Replacing loading container with animation');
+                dnaLoadingContainer.parentNode.replaceChild(lottiePlayer, dnaLoadingContainer);
+                
+                // Fade in animation
+                setTimeout(() => {
+                  lottiePlayer.style.opacity = '1';
+                  console.log('Animation should now be visible');
+                  console.log('Final lottie-player element:', lottiePlayer);
+                }, 50);
+              } catch (error) {
+                console.error('Error during DOM replacement:', error);
+                // Fallback - just hide loading and show animation in place
+                dnaLoadingContainer.style.display = 'none';
+                lottiePlayer.style.opacity = '1';
+                console.log('Using fallback display method');
+              }
+            }, 300);
+          } else {
+            console.error('dnaLoadingContainer not found or no parent');
+          }
+        };
+
+        // Test if lottie-player custom element is defined
+        if (customElements.get('lottie-player')) {
+          console.log('lottie-player custom element is defined');
+        } else {
+          console.log('lottie-player custom element not yet defined, waiting...');
+          customElements.whenDefined('lottie-player').then(() => {
+            console.log('lottie-player custom element now defined');
+          });
+        }
+
+        // Multiple event listeners for better compatibility
+        lottiePlayer.addEventListener('ready', () => {
+          console.log('lottie-player ready event fired');
+          handleAnimationReady();
+        });
+        
+        lottiePlayer.addEventListener('load', () => {
+          console.log('lottie-player load event fired');
+          handleAnimationReady();
+        });
+
+        // Also try listening for the rendered event
+        lottiePlayer.addEventListener('rendered', () => {
+          console.log('lottie-player rendered event fired');
+          handleAnimationReady();
+        });
+        
+        // Listen for load error
+        lottiePlayer.addEventListener('error', function(e) {
+          console.error('DNA animation failed to load:', e);
+          clearTimeout(loadingTimeout);
+          showFallbackMessage();
+        });
+
+        // Add to DOM
+        console.log('Adding lottie-player to DOM');
+        dnaLoadingContainer.parentNode.appendChild(lottiePlayer);
+        
+        // Also try a polling approach as backup
+        let pollCount = 0;
+        const pollForAnimation = () => {
+          pollCount++;
+          if (pollCount > 50) { // Stop after 5 seconds
+            console.log('Polling timeout reached');
+            return;
+          }
+          
+          if (lottiePlayer && lottiePlayer.getLottie && lottiePlayer.getLottie()) {
+            console.log('Animation found via polling');
+            handleAnimationReady();
+          } else {
+            setTimeout(pollForAnimation, 100);
+          }
+        };
+        
+        setTimeout(pollForAnimation, 500);
+      }
+
+      function showFallbackMessage() {
+        if (dnaLoadingContainer) {
+          const spinner = dnaLoadingContainer.querySelector('.dna-spinner');
+          const loadingText = dnaLoadingContainer.querySelector('.dna-loading-text');
+          
+          if (spinner) spinner.style.display = 'none';
+          if (loadingText) {
+            loadingText.textContent = 'Animation temporarily unavailable';
+            loadingText.style.fontSize = '1.6rem';
+          }
+        }
+      }
     });
 
   </script>
