@@ -415,8 +415,8 @@
                   Based on a dual-coin mechanism, ZNN & QSR work in synergy to power the ultimate protocol for creating
                   digital value </p>
             </div>
-            <lottie-player id="dna" src="img/anim/dna.json" clearCanvas="true" autoplay loop
-              mode="normal" speed="0.6"></lottie-player>
+            <lottie-player id="dna" data-src="./img/anim/dna.json" clearCanvas="true" autoplay loop
+              mode="normal" speed="0.6" class="lazy-lottie"></lottie-player>
 
           </div>
         </div>
@@ -998,6 +998,30 @@
       nav: true,
       spacing: -0.7,
       touch: true
+    });
+
+    // Lazy load Lottie animations to improve performance
+    document.addEventListener('DOMContentLoaded', function() {
+      const lazyLottieObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const lottiePlayer = entry.target;
+            const src = lottiePlayer.getAttribute('data-src');
+            if (src) {
+              lottiePlayer.setAttribute('src', src);
+              lottiePlayer.removeAttribute('data-src');
+              lazyLottieObserver.unobserve(lottiePlayer);
+            }
+          }
+        });
+      }, {
+        rootMargin: '100px'
+      });
+
+      // Observe all lazy Lottie players
+      document.querySelectorAll('.lazy-lottie').forEach(lottie => {
+        lazyLottieObserver.observe(lottie);
+      });
     });
 
   </script>
