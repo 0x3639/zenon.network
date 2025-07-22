@@ -1032,58 +1032,6 @@
       touch: true
     });
 
-    (function () {
-      var visited = sessionStorage.getItem('visited');
-      var body = document.getElementsByTagName('body');
-      var loading = document.getElementById('loading');
-      var container = document.getElementById('container');
-      var loader = document.getElementById('loader');
-      var player = document.getElementById("intro");
-      var wrapper = document.querySelector('.wrapper');
-
-      var desktopAnim = './img/anim/intro.json';
-      var mobileAnim = './img/anim/intro-mobile.json';
-
-      if (/Mobi|Android/i.test(navigator.userAgent)) {
-        player.load(mobileAnim);
-      } else {
-        player.load(desktopAnim);
-      }
-
-      player.addEventListener('ready', function () {
-
-        if (visited === 'yes') {
-          body[0].classList.remove('animateBody');
-          wrapper.classList.remove('hideBody');
-
-          loader.style.display = 'none';
-
-        } else {
-          body[0].classList.add('animateBody');
-
-          loader.style.display = 'block';
-          container.classList.remove('hidden');
-
-          setTimeout(() => {
-            player.classList.remove('invisible');
-            loading.style.display = 'none';
-            player.play();
-          }, 500);
-
-          sessionStorage.setItem('visited', 'yes');
-
-          player.addEventListener('complete', function () {
-            wrapper.classList.remove('hideBody');
-            loader.classList.add('fadeOut');
-
-            setTimeout(() => {
-              body[0].classList.remove('animateBody');
-              loader.style.display = 'none';
-            }, 1000);
-          });
-        }
-      })
-    })();
   </script>
 </body>
 
