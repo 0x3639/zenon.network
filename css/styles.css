@@ -1522,6 +1522,7 @@ main {
   margin-top: 11rem;
   margin-bottom: 5rem;
   background-image: url("../img/ball.png");
+  background-image: url("../img/ball.webp");
   background-size: contain;
   background-position: 30rem 0;
   background-repeat: no-repeat;
@@ -1567,6 +1568,7 @@ main {
 
 #timeline {
   background-image: url("../img/star-background.png");
+  background-image: url("../img/star-background.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1925,6 +1927,7 @@ main {
 @media screen and (min-width: 768px) {
   .section.liquidity {
     background-image: url("../img/swirl.png");
+    background-image: url("../img/swirl.webp");
   }
   .section.liquidity .liquidity-buttons {
     flex-direction: row;
@@ -2525,6 +2528,7 @@ main {
 .section.zenon .card-big--zenon .card-big__wrapper {
   padding: 3rem 3rem 2.5rem 3rem;
   background-image: url("../img/znn-bg.png");
+  background-image: url("../img/znn-bg.webp");
   background-repeat: no-repeat;
   background-position-y: bottom;
   background-position-x: 3rem;
@@ -2817,6 +2821,7 @@ main {
   right: 50%;
   margin-left: -2rem;
   background-image: url("../img/play.png");
+  background-image: url("../img/play.webp");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -3129,6 +3134,7 @@ main {
 .section.info .big-card.pillar {
   max-width: 100%;
   background-image: url("../img/pillar-bg.png");
+  background-image: url("../img/pillar-bg.webp");
   background-repeat: no-repeat;
   background-position-y: bottom;
   background-position-x: 3rem;
