@@ -1,6 +1,6 @@
-@import 'https://fonts.cdnfonts.com/css/circular-std';
-@import 'https://fonts.cdnfonts.com/css/florencesans-sc';
-@import 'https://fonts.cdnfonts.com/css/circula';
+@import 'http://fonts.cdnfonts.com/css/circular-std';
+@import 'http://fonts.cdnfonts.com/css/florencesans-sc';
+@import 'http://fonts.cdnfonts.com/css/circula';
 @font-face {
   font-family: "PresicavHv";
   src: url("../fonts/PresicavHv-Regular.ttf") format("truetype");
@@ -1579,6 +1579,7 @@ main {
   margin-top: 11rem;
   margin-bottom: 5rem;
   background-image: url("../img/ball.png");
+  background-image: url("../img/ball.webp");
   background-size: contain;
   background-position: 30rem 0;
   background-repeat: no-repeat;
@@ -1624,6 +1625,7 @@ main {
 
 #timeline {
   background-image: url("../img/star-background.png");
+  background-image: url("../img/star-background.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1982,6 +1984,7 @@ main {
 @media screen and (min-width: 768px) {
   .section.liquidity {
     background-image: url("../img/swirl.png");
+    background-image: url("../img/swirl.webp");
   }
   .section.liquidity .liquidity-buttons {
     flex-direction: row;
@@ -2582,6 +2585,7 @@ main {
 .section.zenon .card-big--zenon .card-big__wrapper {
   padding: 3rem 3rem 2.5rem 3rem;
   background-image: url("../img/znn-bg.png");
+  background-image: url("../img/znn-bg.webp");
   background-repeat: no-repeat;
   background-position-y: bottom;
   background-position-x: 3rem;
@@ -2874,6 +2878,7 @@ main {
   right: 50%;
   margin-left: -2rem;
   background-image: url("../img/play.png");
+  background-image: url("../img/play.webp");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -3186,6 +3191,7 @@ main {
 .section.info .big-card.pillar {
   max-width: 100%;
   background-image: url("../img/pillar-bg.png");
+  background-image: url("../img/pillar-bg.webp");
   background-repeat: no-repeat;
   background-position-y: bottom;
   background-position-x: 3rem;
@@ -5136,10 +5142,6 @@ main {
 .trade__tech-list li.navy {
   background: #181A2E;
   border: 0.5px solid #2E3252;
-}
-.trade__tech-list li.black {
-  background: #000;
-  border: 0.5px solid #00CCFF;
 }
 .trade__tech-list li.blue {
   background: #12184B;
