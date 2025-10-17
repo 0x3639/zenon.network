@@ -1032,48 +1032,6 @@ header.inactive {
   }
 }
 
-#intro {
-  width: 100%;
-  top: 0;
-  left: 0;
-  position: fixed;
-  height: 100%;
-}
-#intro.invisible {
-  position: fixed;
-}
-.lds-dual-ring {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-  z-index: 9;
-  position: absolute;
-  top: 50%;
-  bottom: 50%;
-  margin-top: -40px;
-  left: 50%;
-  right: 50%;
-  margin-left: -40px;
-}
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: 6px solid #3BDA57;
-  border-color: #3BDA57 transparent #3BDA57 transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 #znnxqsr,
 #portal {
   width: 100%;
@@ -1135,40 +1093,6 @@ body {
 
 main {
   position: relative;
-  overflow: hidden;
-}
-
-#container.hidden {
-  display: none;
-}
-
-#loader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: black;
-  z-index: 99;
-}
-#loader.fadeIn {
-  opacity: 1;
-  transition: opacity 1.4s ease-in-out;
-}
-#loader.fadeOut {
-  opacity: 0;
-}
-#loader.hidden {
-  display: none;
-}
-
-.hideBody {
-  visibility: hidden;
-}
-
-.animateBody {
   overflow: hidden;
 }
 
@@ -5137,10 +5061,6 @@ main {
   background: #181A2E;
   border: 0.5px solid #2E3252;
 }
-.trade__tech-list li.black {
-  background: #000;
-  border: 0.5px solid #00CCFF;
-}
 .trade__tech-list li.blue {
   background: #12184B;
   border: 0.5px solid #6A79FF;
@@ -5160,6 +5080,10 @@ main {
 .trade__tech-list li.red {
   background: #410F0F;
   border: 0.5px solid #E84142;
+}
+.trade__tech-list li.black {
+  background: #000;
+  border: 0.5px solid #00CCFF;
 }
 @media screen and (min-width: 768px) {
   .trade {
