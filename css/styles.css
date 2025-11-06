@@ -4948,15 +4948,14 @@ main {
   margin: 3rem auto 5rem;
 }
 .trade__columns {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 3rem;
   margin: 6rem 0;
 }
 .trade__column {
   display: flex;
   gap: 1.5rem;
-  flex: 1 1 auto;
 }
 .trade__card {
   display: flex;
@@ -5089,6 +5088,9 @@ main {
   .trade {
     padding: 8rem 0 0;
   }
+  .trade__columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .trade__title h2 {
     font-size: 3.8rem;
   }
@@ -5100,10 +5102,6 @@ main {
 @media screen and (min-width: 992px) {
   .trade {
     padding: 10rem 0 0;
-  }
-  .trade__column {
-    flex: 1 1 40rem;
-    max-width: 42rem;
   }
   .trade__columns {
     margin: 10rem 0;
@@ -5134,6 +5132,11 @@ main {
   .trade .back-title {
     font-size: 12rem;
     margin-left: -45rem;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .trade__columns {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media screen and (min-width: 1600px) {
